@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Vue Template-Directives</title>
+  </head>
+  <body>
+    <div id="app">
+        <a v-if="flag">두잇 vue.js</a> <!--true이므로 텍스트 화면표시-->
+        <ul>
+            <li v-for="system in systems">{{system}}</li>
+        </ul>
+        <p v-show="flag">두잇 Vue.js</p>
+        <h5 v-bind:id="uid">뷰 입문서</h5>
+        <button v-on:click="popupAlert">경고 창 버튼</button>
+        <!--v-on디렉티브로 이벤트처리-->
+        <button v-on:click="clickBtn">클릭</button>
+        <!--v-on디렉티브로 메서드 호출 시 인자값 넘기기-->
+        <button v-on:click="clickBtn(10)">클릭2</button>
+        <!--event인자를 이용해 돔 이벤트에 접근하기-->
+        <button v-on:click="clickBtnbtn">클릭3</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                flag:true,
+                systems:['android', 'ios', 'window'],
+                uid:10
+            },
+            methods:{
+                popupAlert:function(){
+                    return alert('경고 창 표시');
+                },
+                clickBtn:function(){
+                    alert('clicked');
+                },
+                clickBtn:function(num){
+                    alert('clicked'+num+'times');
+                },
+                clickBtnbtn:function(event){
+                    console.log(event);
+                }
+            }
+        });
+    </script>
+    </body>
+    </html>
